@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import BaseUserManager,AbstractBaseUser,PermissionsMixin
 
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -23,7 +21,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(models.Model):
+class User(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key = True)
     username = models.CharField('Username',max_length= 5,unique=True)
     password = models.CharField('Password',max_length=255)
