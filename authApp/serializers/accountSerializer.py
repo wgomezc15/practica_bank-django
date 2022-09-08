@@ -1,5 +1,3 @@
-from dataclasses import fields
-import imp
 from authApp.models.account import Account
 from rest_framework import serializers
 
